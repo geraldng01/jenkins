@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.5.7'  // Update to Spring Boot 2.5.x or later
+    id 'org.springframework.boot' version '2.5.7'  // Updated to a compatible version
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
@@ -28,7 +28,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-jetty'
     compileOnly 'org.projectlombok:lombok:1.18.24'  // Ensure you're using the latest version
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test' {
+    
+    // Correct dependency declaration
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
 }

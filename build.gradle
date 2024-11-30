@@ -1,38 +1,38 @@
 plugins {
-	id 'org.springframework.boot' version '2.2.7.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-	id 'java'
+    id 'org.springframework.boot' version '2.5.7'  // Update to Spring Boot 2.5.x or later
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
 }
 
 group = 'com.jhooq'
 version = '0.0.1-SNAPSHOT'
 
 java {
-    sourceCompatibility = '17'
-    targetCompatibility = '17'
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
-	compile.exclude module: "spring-boot-starter-tomcat"
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    compile.exclude module: "spring-boot-starter-tomcat"
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-jetty'
-	compileOnly 'org.projectlombok:lombok:1.18.24'  // Ensure you're using the latest version
-    	annotationProcessor 'org.projectlombok:lombok:1.18.24'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-jetty'
+    compileOnly 'org.projectlombok:lombok:1.18.24'  // Ensure you're using the latest version
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test' {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
 }
 
 test {
-	useJUnitPlatform()
+    useJUnitPlatform()
 }

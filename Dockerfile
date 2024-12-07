@@ -1,14 +1,11 @@
-# Use OpenJDK 17 on Alpine as the base image
+# Use OpenJDK 17 on Alpine as base image
 FROM openjdk:17-jdk-alpine
 
-# Create a directory for the copied JAR file
-RUN mkdir /app
+# Define the location of your .jar file
+ARG JAR_FILE=build/libs/Jhooq-k8s-0.0.1-SNAPSHOT.jar
 
-# Copy all .jar files into the /app directory
-COPY build/libs/*.jar /app/
-
-# Rename the first .jar file to app.jar
-RUN mv /app/*.jar /app/app.jar
+# Rename the JAR file during copy (copy it as app.jar inside the container)
+COPY ${JAR_FILE} /app.jar
 
 # Create destination directory for added files
 RUN mkdir -p /destination-dir-for-add
@@ -17,4 +14,4 @@ RUN mkdir -p /destination-dir-for-add
 ADD sample.tar.gz /destination-dir-for-add
 
 # Define the entry point to run your application
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+ENTRYPOINT ["java", "-jar", "/app.jar"]
